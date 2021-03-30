@@ -1,0 +1,82 @@
+@import '../variable.scss';
+
+.thumbs {
+  margin: 10px 0;
+
+  @media (max-width: 480px) {
+    margin: 5px 0;
+  }
+
+  ul {
+    list-style: none;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+  }
+}
+
+.thumbItem {
+  width: 100px;
+  transition: border 0.15s ease-in;
+  display: inline-block;
+  margin: 0;
+  margin-right: 10px;
+  cursor: pointer;
+  opacity: 0.5;
+
+  // just on mobile
+  @media (max-width: 480px) {
+    width: 60px;
+    margin-right: 5px;
+  }
+
+  img {
+    width: 100%;
+    display: inline-block;
+    pointer-events: none;
+    vertical-align: top;
+  }
+
+  &.selected {
+    opacity: 1;
+  }
+}
+
+.points {
+  z-index: $actionsIndex;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+
+  ul {
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+  }
+}
+
+.pointItem {
+  transition: opacity 0.25s ease-in;
+  opacity: 0.5;
+  background: $white;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 8px;
+
+  &.selected {
+    opacity: 1;
+  }
+
+  // just on desktop
+  @media (min-width: 1025px) {
+    &:hover {
+      background: $cyan;
+    }
+  }
+}

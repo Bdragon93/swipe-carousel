@@ -1,0 +1,85 @@
+@import '../variable.scss';
+
+.wrapper {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  transition-duration: 200ms;
+
+  li {
+    min-width: 100%;
+    margin: 0;
+    position: relative;
+    text-align: center;
+
+    img {
+      width: 100%;
+      pointer-events: none;
+      vertical-align: top;
+    }
+  }
+}
+
+.sliderWrapper {
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  width: 100%;
+}
+
+@mixin arrowBtn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  color: $white;
+  font-size: 26px;
+  margin-top: 0;
+  padding: 8px;
+  z-index: $actionsIndex;
+  background: none;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+
+  // just on desktop
+  @media (min-width: 1025px) {
+    transition: all 0.25s ease-in;
+    opacity: 0.5;
+
+    &:hover {
+      background: rgba($black, 0.2);
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    margin: 0 5px;
+    display: inline-block;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    content: '';
+  }
+}
+
+.prevBtn {
+  @include arrowBtn;
+
+  left: 0;
+
+  &::before {
+    border-right: 8px solid $white;
+  }
+}
+
+.nextBtn {
+  @include arrowBtn;
+
+  right: 0;
+
+  &::before {
+    border-left: 8px solid $white;
+  }
+}
