@@ -5,6 +5,7 @@
     "strict": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
+    "module": "commonjs",
     "moduleResolution": "node",
     "allowJs": true,
     "esModuleInterop": true,
