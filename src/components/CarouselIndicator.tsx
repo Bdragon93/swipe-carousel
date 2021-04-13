@@ -1,10 +1,9 @@
 import React from 'react';
-import { Slide } from '../types';
 import styles from './CarouselIndicator.scss';
 
 export const CarouselIndicator: React.FC<{
   type: string;
-  slides: Slide[];
+  slides: React.ReactElement<any>[];
   selectedIndex: number;
   goToSlide: Function;
 }> = ({ type, slides, selectedIndex, goToSlide }) => {
@@ -13,15 +12,15 @@ export const CarouselIndicator: React.FC<{
   return (
     <div className={isThumbs ? styles.thumbs : styles.points}>
       <ul>
-        {slides.map((slide, index) => (
+        {slides.map((item, index) => (
           <li
-            key={slide.id}
+            key={item.key}
             onClick={() => goToSlide(index)}
             className={`${itemStyle} ${
               index === selectedIndex ? styles.selected : ''
             }`}
           >
-            {isThumbs && <img src={slide.src} />}
+            {isThumbs && item}
           </li>
         ))}
       </ul>

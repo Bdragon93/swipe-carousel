@@ -24,11 +24,16 @@
   margin-right: 10px;
   cursor: pointer;
   opacity: 0.5;
+  word-wrap: break-word;
+  white-space: normal;
+  max-height: 80px;
+  overflow: hidden;
 
   // just on mobile
   @media (max-width: 480px) {
     width: 60px;
     margin-right: 5px;
+    max-height: 40px;
   }
 
   img {

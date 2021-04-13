@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { THRESHOLD, TRANSITION_DURATION } from '../constants';
 import CarouselIndicator from './CarouselIndicator';
-import { Slide } from '../types';
 import styles from './Carousel.scss';
 
-export const Carousel: React.FC<{ slides: Slide[] }> = ({ slides }) => {
+export const Carousel: React.FC<{ children?: React.ReactElement<any>[] }> = ({
+  children,
+}) => {
+  if (!children) return null;
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [disableDrag, setDisableDrag] = useState(false);
   useEffect(() => {
@@ -36,7 +39,7 @@ export const Carousel: React.FC<{ slides: Slide[] }> = ({ slides }) => {
 
   const next = () => {
     if (disableDrag) return;
-    if (selectedIndex === slides.length - 1) {
+    if (selectedIndex === children.length - 1) {
       listElement.current.style.transform = `translate3d(-${
         selectedIndex + 2
       }00%, 0, 0)`;
@@ -51,7 +54,7 @@ export const Carousel: React.FC<{ slides: Slide[] }> = ({ slides }) => {
     if (disableDrag) return;
     if (selectedIndex === 0) {
       listElement.current.style.transform = 'translate3d(0, 0, 0)';
-      delaySetHeadIndex(slides.length - 1);
+      delaySetHeadIndex(children.length - 1);
     } else {
       listElement.current.style.transitionDuration = `${TRANSITION_DURATION}ms`;
       setSelectedIndex(selectedIndex - 1);
@@ -174,28 +177,23 @@ export const Carousel: React.FC<{ slides: Slide[] }> = ({ slides }) => {
         <button className={styles.prevBtn} onClick={prev} />
         <button className={styles.nextBtn} onClick={next} />
         <ul ref={listElement} className={styles.wrapper} style={{ transform }}>
-          <li key={0}>
-            <img src={slides[slides.length - 1].src} />
-          </li>
-          {slides.map(slide => (
-            <li key={slide.id}>
-              <img src={slide.src} />
-            </li>
+          <li key={0}>{children[children.length - 1]}</li>
+
+          {children.map((item: any) => (
+            <li key={item.key}>{item}</li>
           ))}
-          <li key={slides.length + 1}>
-            <img src={slides[0].src} />
-          </li>
+          <li key={children.length + 1}>{children[0]}</li>
         </ul>
         <CarouselIndicator
           type="points"
-          slides={slides}
+          slides={children}
           selectedIndex={selectedIndex}
           goToSlide={goToSlide}
         />
       </div>
       <CarouselIndicator
         type="thumbs"
-        slides={slides}
+        slides={children}
         selectedIndex={selectedIndex}
         goToSlide={goToSlide}
       />

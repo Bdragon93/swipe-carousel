@@ -22,9 +22,15 @@ For npm:
 
 `$ yarn start`
 
+It will auto open your browser
+
 For npm:
 
 `$ npm run start`
+
+On mobile/ipad devices:
+
+Enter your local ip with port 4000 in browser of mobile/ipad to access
 
 ### Build for production
 
