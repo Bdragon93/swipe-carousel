@@ -4,7 +4,7 @@ import CarouselIndicator from './CarouselIndicator';
 import styles from './Carousel.scss';
 
 export const Carousel: React.FC<{
-  children?: React.ReactElement<{ key: number }>[];
+  children?: React.ReactElement[];
 }> = ({ children }) => {
   if (!children) return null;
 
@@ -179,7 +179,7 @@ export const Carousel: React.FC<{
         <ul ref={listElement} className={styles.wrapper} style={{ transform }}>
           <li key={0}>{children[children.length - 1]}</li>
 
-          {children.map((item: React.ReactElement<{ key: number }>) => (
+          {children.map((item: React.ReactElement) => (
             <li key={item.key}>{item}</li>
           ))}
           <li key={children.length + 1}>{children[0]}</li>
